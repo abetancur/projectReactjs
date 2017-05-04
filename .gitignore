@@ -1,0 +1,17 @@
+# Intellij
+.idea/
+nbproject/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+sonar-project.properties
+.sonar/*
+/node_modules/*
+gulpfile.js
