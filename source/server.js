@@ -1,29 +1,32 @@
 import http from 'http';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { ServerRouter, createServerRenderContext } from 'react-router';
-import Pages from './pages/Containers/Page.jsx';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import { ServerRouter, createServerRenderContext } from 'react-router'
+
+import Pages from './pages/containers/Page.jsx';
+import Layout from './pages/components/Layout.jsx';
 
 function requestHandler(request, response){
     const context = createServerRenderContext()
     let html = renderToString(
-       <ServerRouter location={request.url} context={context}>
-           <Pages />
-       </ServerRouter>
-    );
+        <ServerRouter location={request.url} context={context}>
+            <Pages />
+        </ServerRouter>
+    )
 
-    response.setHeader('Content-Type', 'text/html')
     const result = context.getResult();
+
+    response.setHeader('Content-Type', 'text/html');
 
     if (result.redirect) {
         response.writeHead(301, {
-            location: result.redirect.pathname,
+            Location: result.redirect.pathname,
         });
-        response.end();
     }
 
     if (result.missed) {
         response.writeHead(404);
+
         html = renderToString(
             <ServerRouter location={request.url} context={context}>
                 <Pages />
@@ -31,7 +34,14 @@ function requestHandler(request, response){
         );
     }
 
-    response.write(html);
+    response.write(
+        renderToStaticMarkup(
+            <Layout
+                title="Aplicación"
+                content={html}
+            />
+        )
+    );
     response.end();
 }
 
