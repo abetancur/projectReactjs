@@ -3,7 +3,7 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { ServerRouter, createServerRenderContext } from 'react-router'
 
-import Pages from './pages/containers/Page.jsx';
+import Pages from './Pages/containers/Page.jsx';
 import Layout from './pages/components/Layout.jsx';
 
 function requestHandler(request, response){
