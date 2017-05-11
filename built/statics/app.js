@@ -25705,21 +25705,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Header = __webpack_require__(227);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
 	var _reactRouter = __webpack_require__(182);
 
 	var _Home = __webpack_require__(220);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Post = __webpack_require__(226);
+	var _Post = __webpack_require__(229);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Profile = __webpack_require__(228);
+	var _Profile = __webpack_require__(231);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Error = __webpack_require__(229);
+	var _Error = __webpack_require__(232);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -25729,6 +25733,7 @@
 	    return _react2.default.createElement(
 	        'main',
 	        { role: 'application' },
+	        _react2.default.createElement(_Header2.default, null),
 	        _react2.default.createElement(_reactRouter.Match, {
 	            pattern: '/',
 	            exactly: true,
@@ -25771,9 +25776,17 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(225);
+	var _Loading = __webpack_require__(226);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
+
+	var _Header = __webpack_require__(227);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Page = __webpack_require__(233);
+
+	var _Page2 = _interopRequireDefault(_Page);
 
 	var _api = __webpack_require__(222);
 
@@ -25847,17 +25860,12 @@
 	    render() {
 	        return _react2.default.createElement(
 	            'section',
-	            { name: 'Home' },
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Home'
-	            ),
+	            { name: 'Home', className: _Page2.default.section },
 	            _react2.default.createElement(
 	                'section',
-	                null,
-	                this.state.loading && _react2.default.createElement(_Loading2.default, null),
-	                this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
+	                { className: _Page2.default.list },
+	                this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post))),
+	                this.state.loading && _react2.default.createElement(_Loading2.default, null)
 	            )
 	        );
 	    }
@@ -25884,6 +25892,10 @@
 	var _api = __webpack_require__(222);
 
 	var _api2 = _interopRequireDefault(_api);
+
+	var _Post = __webpack_require__(225);
+
+	var _Post2 = _interopRequireDefault(_Post);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25916,34 +25928,32 @@
 	    render() {
 	        return _react2.default.createElement(
 	            'article',
-	            { id: `post-${this.props.id}` },
+	            { id: `post-${this.props.id}`, className: _Post2.default.post },
 	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: `/post/${this.props.id}` },
+	                'h2',
+	                { className: _Post2.default.title },
 	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    ' ',
-	                    this.props.title,
-	                    ' '
+	                    _reactRouter.Link,
+	                    { to: `/post/${this.props.id}` },
+	                    this.props.title
 	                )
 	            ),
 	            _react2.default.createElement(
 	                'p',
-	                null,
+	                { className: _Post2.default.body },
 	                this.props.body
 	            ),
 	            !this.props.loading && _react2.default.createElement(
 	                'div',
-	                null,
+	                { className: _Post2.default.meta },
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: `/user/${this.state.user.id}` },
+	                    { to: `/user/${this.state.user.id}`, className: _Post2.default.link },
 	                    this.state.user.name
 	                ),
 	                _react2.default.createElement(
 	                    'span',
-	                    null,
+	                    { className: _Post2.default.comments },
 	                    'hay ',
 	                    this.state.comments.length,
 	                    ' comentarios'
@@ -26507,6 +26517,13 @@
 
 /***/ }),
 /* 225 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"post":"_3JQwMRwjAPCdCYkDHr5XjY","title":"_1u0-rHcH5uIaBJpPX7c8SS","meta":"_3GZs2BXZEUtnHSV80Di-rJ","link":"_2nK9tcOwEJMOm1kj63cpbD"};
+
+/***/ }),
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26532,7 +26549,68 @@
 	exports.default = Loading;
 
 /***/ }),
-/* 226 */
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _Header = __webpack_require__(228);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Header() {
+	    return _react2.default.createElement(
+	        'header',
+	        { className: _Header2.default.header },
+	        _react2.default.createElement(
+	            'h1',
+	            { className: _Header2.default.title },
+	            'ReactJS'
+	        ),
+	        _react2.default.createElement(
+	            'nav',
+	            { role: 'navigation', className: _Header2.default.navigation },
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/', className: _Header2.default.link },
+	                'Home'
+	            ),
+	            _react2.default.createElement(
+	                'a',
+	                {
+	                    className: _Header2.default.link,
+	                    href: 'https://github.com/abetancur/projectReactjs',
+	                    target: '_blank'
+	                },
+	                'GitHub'
+	            )
+	        )
+	    );
+	}
+
+	exports.default = Header;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"header":"drWyG9k3xNlp6i9xgC9S1","title":"_1PGRrQ-JzqagQe0vO5_fw8","navigation":"_24vuKwSX7nLQNAtoDeKMn4","link":"EMKmSBN1egAsi5Ec2X8qo"};
+
+/***/ }),
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26551,13 +26629,17 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(225);
+	var _Loading = __webpack_require__(226);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _Comment = __webpack_require__(227);
+	var _Comment = __webpack_require__(230);
 
 	var _Comment2 = _interopRequireDefault(_Comment);
+
+	var _Post3 = __webpack_require__(235);
+
+	var _Post4 = _interopRequireDefault(_Post3);
 
 	var _api = __webpack_require__(222);
 
@@ -26609,7 +26691,7 @@
 	            })),
 	            _react2.default.createElement(
 	                'section',
-	                null,
+	                { className: _Post4.default.main },
 	                this.state.comments.map(comment => _react2.default.createElement(_Comment2.default, _extends({ key: comment.id }, comment)))
 	            )
 	        );
@@ -26619,7 +26701,7 @@
 	exports.default = Post;
 
 /***/ }),
-/* 227 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26660,7 +26742,7 @@
 	exports.default = Comment;
 
 /***/ }),
-/* 228 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26679,9 +26761,13 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(225);
+	var _Loading = __webpack_require__(226);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
+
+	var _Profile = __webpack_require__(234);
+
+	var _Profile2 = _interopRequireDefault(_Profile);
 
 	var _api = __webpack_require__(222);
 
@@ -26723,44 +26809,48 @@
 	            'section',
 	            { name: 'Profile' },
 	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                'profile of ',
-	                this.state.user.name
-	            ),
-	            _react2.default.createElement(
-	                'fieldset',
-	                null,
+	                'section',
+	                { className: _Profile2.default.main },
 	                _react2.default.createElement(
-	                    'legend',
+	                    'h2',
 	                    null,
-	                    'Basic Info'
-	                ),
-	                _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
-	            ),
-	            this.state.user.address && _react2.default.createElement(
-	                'fieldset',
-	                null,
-	                _react2.default.createElement(
-	                    'legend',
-	                    null,
-	                    'Address'
+	                    'Perfil de ',
+	                    this.state.user.name
 	                ),
 	                _react2.default.createElement(
-	                    'address',
+	                    'fieldset',
 	                    null,
-	                    this.state.user.address.street,
-	                    '  ',
-	                    _react2.default.createElement('br', null),
-	                    this.state.user.address.suite,
-	                    '  ',
-	                    _react2.default.createElement('br', null),
-	                    this.state.user.address.city,
-	                    '  ',
-	                    _react2.default.createElement('br', null),
-	                    this.state.user.address.zipcode,
-	                    '  ',
-	                    _react2.default.createElement('br', null)
+	                    _react2.default.createElement(
+	                        'legend',
+	                        null,
+	                        'Informaci\xF3n b\xE1sica'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
+	                ),
+	                this.state.user.address && _react2.default.createElement(
+	                    'fieldset',
+	                    null,
+	                    _react2.default.createElement(
+	                        'legend',
+	                        null,
+	                        'Address'
+	                    ),
+	                    _react2.default.createElement(
+	                        'address',
+	                        null,
+	                        this.state.user.address.street,
+	                        '  ',
+	                        _react2.default.createElement('br', null),
+	                        this.state.user.address.suite,
+	                        '  ',
+	                        _react2.default.createElement('br', null),
+	                        this.state.user.address.city,
+	                        '  ',
+	                        _react2.default.createElement('br', null),
+	                        this.state.user.address.zipcode,
+	                        '  ',
+	                        _react2.default.createElement('br', null)
+	                    )
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -26778,7 +26868,7 @@
 	exports.default = Profile;
 
 /***/ }),
-/* 229 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26815,6 +26905,27 @@
 	}
 
 	exports.default = Error404;
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"section":"_3UOvwtRvuIEYNKSSOhmIY5","list":"_2Cmb-lnagLjcP5tMGys16R"};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"main":"v9THK3PRKrVhO6yPnUXU1","field":"VnXj-mwx-mDPr60fA7Gcd","appear":"WBxmlhWtW7oA1Yhf5efzO","appearActive":"_1W_uMQDIyqAnhaL1ZRXKsR","enter":"_1H3oszbjREJRi82DPKXSVj","enterActive":"_1FaQo5HBWuR9eL-gPqrtYD","leave":"_2MiAPIn1v1Z-LDEGTbhgyI","leaveActive":"_3972V72XtX2DuYYyPPnWKN"};
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"main":"_3PVEdXKA76lxx4-bbLXkBb"};
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../shared/components/Header.jsx';
 import {
     Match,
     Miss,
@@ -14,6 +15,7 @@ import Error404 from './Error404.jsx';
 function Pages() {
     return (
         <main role="application">
+            <Header />
             {/* List de artículos */}
             <Match
                 pattern="/"
