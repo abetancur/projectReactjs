@@ -3,6 +3,7 @@ import Post from '../../posts/containers/Post.jsx';
 import Loading from '../../shared/components/Loading.jsx';
 import styles from './Profile.css';
 import api from '../../api.js';
+import { FormattedMessage } from 'react-intl'
 
 class Profile extends Component {
     constructor(props){
@@ -37,10 +38,19 @@ class Profile extends Component {
         return (
             <section name="Profile">
                 <section className={styles.main}>
-                    <h2>Perfil de {this.state.user.name}</h2>
+                    <h2>
+                        <FormattedMessage
+                            id="profile.name"
+                            values={{
+                                name: this.state.user.name
+                            }}
+                        />
+                     </h2>
 
                     <fieldset>
-                        <legend>Información básica</legend>
+                        <legend>
+                            <FormattedMessage id="profile.info"/>
+                        </legend>
                         <input type="email" value={this.state.user.email} disabled />
                     </fieldset>
 

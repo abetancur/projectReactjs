@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import styles from './Header.css';
+import { FormattedMessage } from 'react-intl';
 
 function Header() {
     return (
@@ -11,7 +12,7 @@ function Header() {
 
             <nav role="navigation" className={styles.navigation}>
                 <Link to="/" className={styles.link}>
-                    Home
+                    <FormattedMessage id="title.home"/>
                 </Link>
                 <a
                     className={styles.link}

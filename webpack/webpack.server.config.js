@@ -1,12 +1,23 @@
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+const config = {
     entry: './source/server.js',
     output: {
         filename: 'index.js',
         path: './built/server',
+        publicPath: process.env.NODE_ENV === 'production'
+            ? 'https://my-app-react-sfs.now.sh'
+            : 'http://localhost:3001/',
     },
     module: {
+        /*preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'eslint',
+                exclude: /(node_modules)/,
+            },
+        ],*/
         loaders: [
             {
                 test: /\.json$/,
@@ -17,8 +28,17 @@ module.exports = {
                 loader: 'babel',
                 exclude: /(node_modules)/,
                 query: {
-                    presets: ['latest-minimal', 'react']
-                }
+                    presets: ['latest-minimal', 'react'],
+                    env: {
+                        production: {
+                            plugins: ['transform-regenerator', 'transform-runtime'],
+                            presets: ['es2015'],
+                        },
+                        development: {
+                            presets: ['latest-minimal'],
+                        },
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -27,9 +47,34 @@ module.exports = {
         ],
     },
     target: 'node',
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.css'],
+    },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env' : {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+            },
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(true),
         new ExtractTextPlugin('../statics/styles.css', {
             allChunks: true
         }),
     ],
 }
+
+if (process.env.NODE_ENV === 'production') {
+    config.plugins.push(
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+            },
+            mangle: {
+                except: ['$super', '$', 'exports', 'require'],
+            },
+        })
+    );
+}
+
+module.exports = config;

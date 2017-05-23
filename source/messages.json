@@ -1,0 +1,14 @@
+{
+  "en": {
+    "loading": "Loading data ...",
+    "title.home": "Home",
+    "profile.name": "Profile of {name}",
+    "profile.info": "Basic Info"
+  },
+  "es": {
+    "loading": "Cargando datos ...",
+    "title.home": "Inicio",
+    "profile.name": "Perfil de {name}",
+    "profile.info": "Información básica"
+  }
+}
